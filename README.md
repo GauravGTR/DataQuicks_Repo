@@ -4,9 +4,9 @@ Accenture Databricks Hackathon
 
 
 Team - 
-kanika.c.agarwal@accenture.com
-rajesh.rajuri@accenture.com
-tanya.chhabra@accenture.com
-j.abhishek@accenture.com
-sachi.saxena@accenture.com
+kanika.c.agarwal@accenture.com \n
+rajesh.rajuri@accenture.com \n
+tanya.chhabra@accenture.com \n
+j.abhishek@accenture.com \n
+sachi.saxena@accenture.com \n
 gaurav.f.yadav@accenture.com
