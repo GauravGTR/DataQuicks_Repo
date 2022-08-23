@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC % run 
+
+# COMMAND ----------
+
 from pyspark.sql.streaming import *
 from pyspark.sql import functions as F
 from pyspark.sql.types import *
