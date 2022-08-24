@@ -47,19 +47,6 @@ class Logger:
 
 # COMMAND ----------
 
-# logger = Logger()
-
-# COMMAND ----------
-
-# logger.DataQuicks_Logger("test_job_2","test_task",End = True,Status = "Failed")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC select * from dataquicks.logs;
-
-# COMMAND ----------
-
 # %sql
 # Drop Table if exists dataquicks.logs; 
 # Create Table dataquicks.logs (
