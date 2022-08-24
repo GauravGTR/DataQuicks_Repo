@@ -71,6 +71,7 @@ use ${var.finalDB}
 -- MAGIC     from ${var.orders} 
 -- MAGIC     group by 1,2
 -- MAGIC     ;""")
+-- MAGIC     fail
 -- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = True,Status = "Successful")
 -- MAGIC except Exception as e:
 -- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = True,Status = "Failed")
