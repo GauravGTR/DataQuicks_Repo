@@ -23,7 +23,9 @@
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC dbutils.notebook.entry_point.getDbutils().notebook().
+-- MAGIC import json
+-- MAGIC context = json.loads(dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson())
+-- MAGIC print(context)
 
 -- COMMAND ----------
 
