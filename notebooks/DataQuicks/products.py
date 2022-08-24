@@ -1,5 +1,11 @@
 # Databricks notebook source
-# MAGIC % run 
+# MAGIC %run ./DataQuicks_Logger
+
+# COMMAND ----------
+
+#logger object this gets refreshed & new object will be created whenever we run a new job.
+logger = Logger()
+logger.DataQuicks_Logger("dataquicks_job","Products",End = False,Status = "Started")
 
 # COMMAND ----------
 
@@ -26,12 +32,18 @@ try:
     .outputMode("append")
     .option("checkpointLocation", "/dataquicks/checkpoints/products_bronze")
     .start("/dataquicks/tables/products_bronze"))
-
+    logger.DataQuicks_Logger("dataquicks_job","Products",End = False,Status = "Running")
+except Exception as e:
+    logger.DataQuicks_Logger("dataquicks_job","Products",End = True,Status = "Failed")
 
 # COMMAND ----------
 
-df_products = spark.read.format('delta').load('/dataquicks/tables/products_bronze')
-df_res = (df_products.withColumn("rank",F.row_number().over(Window.partitionBy("product_id").orderBy(F.desc("modified_dttm"))))
-    .where("rank==1").drop("rank")
-     .where("product_id is not null and product_name is not null and product_name != ''"))
-df_res.write.format('delta').mode('overWrite').save('/dataquicks/products_silver')
+try:
+    df_products = spark.read.format('delta').load('/dataquicks/tables/products_bronze')
+    df_res = (df_products.withColumn("rank",F.row_number().over(Window.partitionBy("product_id").orderBy(F.desc("modified_dttm"))))
+        .where("rank==1").drop("rank")
+         .where("product_id is not null and product_name is not null and product_name != ''"))
+    df_res.write.format('delta').mode('overWrite').save('/dataquicks/products_silver')
+    logger.DataQuicks_Logger("dataquicks_job","Products",End = True,Status = "Successful")
+except Exception as e:    
+    logger.DataQuicks_Logger("dataquicks_job","Products",End = True,Status = "Failed")

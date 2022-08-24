@@ -47,20 +47,25 @@ class Logger:
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC select * from dataquicks.logs;
+# %sql
+# select * from dataquicks.logs;
+
+# COMMAND ----------
+
+# %sql
+# Drop Table if exists dataquicks.logs; 
+# Create Table dataquicks.logs (
+#   Job_Name varchar(100),
+#   Task_Name varchar(100),
+#   Start_Time varchar(100),
+#   End_Time varchar(100),
+#   Status varchar(100)
+# );
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC Drop Table if exists dataquicks.logs; 
-# MAGIC Create Table dataquicks.logs (
-# MAGIC   Job_Name varchar(100),
-# MAGIC   Task_Name varchar(100),
-# MAGIC   Start_Time varchar(100),
-# MAGIC   End_Time varchar(100),
-# MAGIC   Status varchar(100)
-# MAGIC );
+# MAGIC select * from dataquicks.logs;
 
 # COMMAND ----------
 
