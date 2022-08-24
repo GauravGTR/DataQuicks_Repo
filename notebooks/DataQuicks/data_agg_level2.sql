@@ -13,6 +13,11 @@
 -- COMMAND ----------
 
 -- MAGIC %python
+-- MAGIC print(dbutils.notebook.getContext.currentRunId)
+
+-- COMMAND ----------
+
+-- MAGIC %python
 -- MAGIC #logger object this gets refreshed & new object will be created whenever we run a new job.
 -- MAGIC logger = Logger()
 -- MAGIC logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_2",End = False,Status = "Started")
