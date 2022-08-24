@@ -13,7 +13,7 @@
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC print(dbutils.notebook.getContext.currentRunId)
+-- MAGIC dbutils.notebook.entry_point.getDbutils().notebook().getContext().currentRunId().toString()
 
 -- COMMAND ----------
 
