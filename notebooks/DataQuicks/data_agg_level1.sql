@@ -1,5 +1,20 @@
 -- Databricks notebook source
+-- MAGIC %md
+-- MAGIC ### Helper functions
+
+-- COMMAND ----------
+
 -- MAGIC %run /DataQuicks/helper_functions
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC # dbutils.fs.rm('dbfs:/FileStore/DataQuicks/Universal_Widget.yml',True)
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC dbutils.notebook.entry_point.getDbutils().notebook().getContext().currentRunId().toString()
 
 -- COMMAND ----------
 
@@ -11,16 +26,27 @@
 
 -- COMMAND ----------
 
+-- MAGIC %md
+-- MAGIC ### Reading the notebook parameters
+
+-- COMMAND ----------
+
 -- MAGIC %python
 -- MAGIC dbutils.widgets.removeAll()
 -- MAGIC spark.conf.set('var.orders', svoc_config['orders'])
 -- MAGIC spark.conf.set('var.products', svoc_config['products'])
 -- MAGIC spark.conf.set('var.customers', svoc_config['customers'])
 -- MAGIC spark.conf.set('var.run_date', svoc_config['run_date'])
+-- MAGIC spark.conf.set('var.finalDB', svoc_config['finalDB'])
 
 -- COMMAND ----------
 
-use dataquicks;
+use ${var.finalDB}
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC ### Data agg Level 1
 
 -- COMMAND ----------
 
