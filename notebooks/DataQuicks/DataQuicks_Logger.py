@@ -32,7 +32,7 @@ class Logger:
         Host_Id = context['tags']['hostName']
         if Start:
             Start_time = self.start_time
-        if End:
+        if End or True:
             End_time = datetime.now()
         spark.sql("""
         insert into dataquicks.logs (Host_Id, Job_Name, Task_Name, Start_Time, End_Time, Status) 
