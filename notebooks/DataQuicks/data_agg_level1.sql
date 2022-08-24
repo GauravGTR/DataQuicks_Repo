@@ -26,6 +26,7 @@
 
 -- MAGIC %python
 -- MAGIC import yaml
+-- MAGIC import sys
 -- MAGIC config = yaml.load(read_file_to_string('/dbfs/FileStore/DataQuicks/Universal_Widget.yml'), Loader=yaml.FullLoader)
 -- MAGIC svoc_config = config['Data_Agg']
 -- MAGIC svoc_config
@@ -75,3 +76,4 @@ use ${var.finalDB}
 -- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = True,Status = "Successful")
 -- MAGIC except Exception as e:
 -- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = True,Status = "Failed")
+-- MAGIC     sys.exit(1)
