@@ -19,6 +19,13 @@
 -- COMMAND ----------
 
 -- MAGIC %python
+-- MAGIC import json
+-- MAGIC context = json.loads(dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson())
+-- MAGIC print(context)
+
+-- COMMAND ----------
+
+-- MAGIC %python
 -- MAGIC import yaml
 -- MAGIC config = yaml.load(read_file_to_string('/dbfs/FileStore/DataQuicks/Universal_Widget.yml'), Loader=yaml.FullLoader)
 -- MAGIC svoc_config = config['Data_Agg']

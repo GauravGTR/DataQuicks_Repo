@@ -18,6 +18,16 @@
 -- COMMAND ----------
 
 -- MAGIC %python
+-- MAGIC dbutils.notebook.entry_point.getDbutils().notebook().
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC dbutils.notebook.entry_point.getDbutils().notebook().
+
+-- COMMAND ----------
+
+-- MAGIC %python
 -- MAGIC #logger object this gets refreshed & new object will be created whenever we run a new job.
 -- MAGIC logger = Logger()
 -- MAGIC logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_2",End = False,Status = "Started")
@@ -142,3 +152,7 @@ use ${var.finalDB};
 -- MAGIC     ;""")
 -- MAGIC except Exception as e:
 -- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_2",End = True,Status = "Failed")
+
+-- COMMAND ----------
+
+
