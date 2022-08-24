@@ -35,7 +35,7 @@ class Logger:
         if End:
             End_time = datetime.now()
         spark.sql("""
-        insert into dataquicks.logs (Job_Name, Task_Name, Start_Time, End_Time, Status) 
+        insert into dataquicks.logs (Host_Id, Job_Name, Task_Name, Start_Time, End_Time, Status) 
         values ('{Host_Id}','{Job_Name}','{Task_Name}','{Start_time}','{End_time}','{Status}')
         """.format(Host_Id = Host_Id,
                    Job_Name = Job_Name,
