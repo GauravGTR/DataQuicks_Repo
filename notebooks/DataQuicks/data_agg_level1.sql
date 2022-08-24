@@ -58,7 +58,8 @@ use ${var.finalDB}
 
 -- MAGIC %python
 -- MAGIC try:
--- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = False,Status = "Running")drop table if exists customer_daily_agg
+-- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = False,Status = "Running")
+-- MAGIC     spark.sql("""drop table if exists customer_daily_agg;""")
 -- MAGIC     spark.sql("""create table customer_daily_agg 
 -- MAGIC     using delta
 -- MAGIC     as 
