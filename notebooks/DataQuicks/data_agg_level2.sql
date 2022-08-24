@@ -13,18 +13,6 @@
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC dbutils.notebook.entry_point.getDbutils().notebook().getContext().currentRunId().toString()
-
--- COMMAND ----------
-
--- MAGIC %python
--- MAGIC import json
--- MAGIC context = json.loads(dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson())
--- MAGIC print(context)
-
--- COMMAND ----------
-
--- MAGIC %python
 -- MAGIC #logger object this gets refreshed & new object will be created whenever we run a new job.
 -- MAGIC logger = Logger()
 -- MAGIC logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_2",End = False,Status = "Started")

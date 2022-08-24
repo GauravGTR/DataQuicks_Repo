@@ -8,20 +8,19 @@
 
 -- COMMAND ----------
 
+-- MAGIC %run ./DataQuicks_Logger
+
+-- COMMAND ----------
+
 -- MAGIC %python
 -- MAGIC # dbutils.fs.rm('dbfs:/FileStore/DataQuicks/Universal_Widget.yml',True)
 
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC dbutils.notebook.entry_point.getDbutils().notebook().getContext().currentRunId().toString()
-
--- COMMAND ----------
-
--- MAGIC %python
--- MAGIC import json
--- MAGIC context = json.loads(dbutils.notebook.entry_point.getDbutils().notebook().getContext().toJson())
--- MAGIC print(context)
+-- MAGIC #logger object this gets refreshed & new object will be created whenever we run a new job.
+-- MAGIC logger = Logger()
+-- MAGIC logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_2",End = False,Status = "Started")
 
 -- COMMAND ----------
 
@@ -57,15 +56,20 @@ use ${var.finalDB}
 
 -- COMMAND ----------
 
-drop table if exists customer_daily_agg;
-create table customer_daily_agg 
-using delta
-as 
-select  customer_id,
-        date(order_datetime) as order_date,
-		count(distinct order_number) as cnt_orders,
-		sum(qty) as sum_quantity,
-		sum(price*qty) as sum_sales
-from ${var.orders} 
-group by 1,2
-;
+-- MAGIC %python
+-- MAGIC try:
+-- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = False,Status = "Running")drop table if exists customer_daily_agg;
+-- MAGIC     spark.sql("""create table customer_daily_agg 
+-- MAGIC     using delta
+-- MAGIC     as 
+-- MAGIC     select  customer_id,
+-- MAGIC             date(order_datetime) as order_date,
+-- MAGIC             count(distinct order_number) as cnt_orders,
+-- MAGIC             sum(qty) as sum_quantity,
+-- MAGIC             sum(price*qty) as sum_sales
+-- MAGIC     from ${var.orders} 
+-- MAGIC     group by 1,2
+-- MAGIC     ;""")
+-- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = True,Status = "Successful")
+-- MAGIC except Exception as e:
+-- MAGIC     logger.DataQuicks_Logger("Data_Aggregation_Workflow","Level_1",End = True,Status = "Failed")
